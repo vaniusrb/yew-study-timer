@@ -1,7 +1,5 @@
 use crate::{
-    providers::{
-        seconds_provider::MessageSecondsStateContext, state_provider::MessageTimerStateContext,
-    },
+    providers::seconds_provider::MessageSecondsStateContext,
     states::{seconds::SecondsStateAction, timer::TimerStateAction},
 };
 use gloo_timers::callback::Interval;

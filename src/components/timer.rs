@@ -3,14 +3,14 @@ use crate::{
     providers::{
         seconds_provider::MessageSecondsStateProvider, state_provider::MessageTimerStateProvider,
     },
-    states::{generic_reducible::MessageGenericProvider, timer::TimerState},
+    states::{generic_reducible::MessageGenericProvider, timer::TimerStateAction},
 };
 use yew::prelude::*;
 
 #[function_component]
 pub fn Timer() -> Html {
     html! {
-        <MessageGenericProvider<TimerState>>
+        <MessageGenericProvider<TimerStateAction>>
         <MessageTimerStateProvider>
         <MessageSecondsStateProvider>
         <div class="box" style="width: 500px;">
@@ -23,6 +23,6 @@ pub fn Timer() -> Html {
         </div>
         </MessageSecondsStateProvider>
         </MessageTimerStateProvider>
-        </MessageGenericProvider<TimerState>>
+        </MessageGenericProvider<TimerStateAction>>
     }
 }
