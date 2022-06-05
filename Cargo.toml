@@ -1,0 +1,14 @@
+[package]
+name = "yew-study-timer"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+yew = { git = "https://github.com/yewstack/yew/", features = ["csr"] }
+yew-agent = { git = "https://github.com/yewstack/yew/" }
+wasm-bindgen-futures = "0.4"
+gloo-timers = "0.2"
+wasm-logger = "0.2"
+log = "0.4"
