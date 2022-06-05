@@ -1,21 +1,19 @@
-use crate::{providers::msg_ctx::MessageTimerStateContext, states::timer::TimerStateAction};
+use crate::{providers::state_provider::MessageTimerStateContext, states::timer::TimerStateAction};
 use yew::prelude::*;
 
 #[function_component]
 pub fn Stop() -> Html {
-    let msg_ctx = use_context::<MessageTimerStateContext>().unwrap();
-
-    let onclick = {
-        // let msg_ctx = msg_ctx;
-        Callback::from(move |_| msg_ctx.dispatch(TimerStateAction::Stop))
-    };
-
-    // let message = msg_ctx.inner.to_owned();
-
+    let timer_state_handle = use_context::<MessageTimerStateContext>().unwrap();
+    let onclick = { Callback::from(move |_| timer_state_handle.dispatch(TimerStateAction::Stop)) };
     html! {
         <div>
-            <button {onclick}>
-                {"[]"}
+            <button class="button is-warning" {onclick}>
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="material-icons">{"stop"}</i>
+                    </span>
+                    <span>{ "Stop" }</span>
+                </span>
             </button>
         </div>
     }

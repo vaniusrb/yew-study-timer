@@ -3,7 +3,6 @@ use std::{
     fmt::{Display, Formatter},
     rc::Rc,
 };
-
 use yew::prelude::*;
 
 pub enum SecondsStateAction {

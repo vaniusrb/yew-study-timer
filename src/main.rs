@@ -1,7 +1,6 @@
 pub mod components;
 pub mod providers;
 pub mod states;
-pub mod timer_test;
 
 use crate::components::timer::Timer;
 use yew::prelude::*;

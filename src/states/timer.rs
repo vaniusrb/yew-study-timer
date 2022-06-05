@@ -3,7 +3,6 @@ use std::{
     fmt::{Display, Formatter},
     rc::Rc,
 };
-
 use yew::prelude::*;
 
 #[derive(Debug, Clone, PartialEq)]
@@ -14,13 +13,13 @@ pub enum TimerStateAction {
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct TimerState {
-    state: TimerStateAction,
+    pub inner: TimerStateAction,
 }
 
 impl Default for TimerState {
     fn default() -> Self {
         Self {
-            state: TimerStateAction::Stop,
+            inner: TimerStateAction::Stop,
         }
     }
 }
@@ -33,7 +32,7 @@ impl TimerState {
 
 impl Display for TimerState {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        write!(f, "{:?}", self.state)
+        write!(f, "{:?}", self.inner)
     }
 }
 
@@ -43,6 +42,6 @@ impl Reducible for TimerState {
 
     /// Reducer Function
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
-        TimerState { state: action }.into()
+        TimerState { inner: action }.into()
     }
 }
