@@ -5,10 +5,26 @@ use std::{
 };
 use yew::prelude::*;
 
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum SecondsStateAction {
     Increment,
     Reset,
 }
+
+impl Default for SecondsStateAction {
+    fn default() -> Self {
+        Self::Reset
+    }
+}
+
+impl Display for SecondsStateAction {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
+// TODO: generalize this with factory
+// create_reducible<T>( |action| -> Self )
 
 #[derive(Default, Debug, Clone, Copy, PartialEq)]
 pub struct SecondsState {

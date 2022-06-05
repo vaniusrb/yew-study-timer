@@ -6,6 +6,7 @@ use yew::prelude::*;
 #[function_component]
 pub fn Reset() -> Html {
     let msg_ctx = use_context::<MessageSecondsStateContext>().unwrap();
+
     let onclick = { Callback::from(move |_| msg_ctx.dispatch(SecondsStateAction::Reset)) };
     html! {
         <div>

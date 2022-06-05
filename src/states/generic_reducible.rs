@@ -8,10 +8,7 @@ use yew::prelude::*;
 
 #[derive(PartialEq, Clone)]
 pub struct GenericReducible<T: Default + Clone + Display + PartialEq + 'static> {
-    inner: T,
-}
-
-pub fn dispatch(&self, value: T) { 
+    pub inner: T,
 }
 
 impl<T: Default + Clone + Display + PartialEq + 'static> GenericReducible<T> {
@@ -46,8 +43,6 @@ impl<T: Default + Clone + Display + PartialEq + 'static> Display for GenericRedu
 
 // TODO: generalize
 
-// pub type MessageGenericContext = UseReducerHandle<GenericReducible<TimerState>>;
-
 #[function_component]
 pub fn MessageGenericProvider<T: Default + Clone + Display + PartialEq + 'static>(
     props: &MessageProviderProps,
@@ -59,3 +54,15 @@ pub fn MessageGenericProvider<T: Default + Clone + Display + PartialEq + 'static
         </ContextProvider<UseReducerHandle<GenericReducible<T>>>>
     }
 }
+
+// #[function_component]
+// pub fn MessageTraitProvider<T: Reducible + Default + Clone + Display + PartialEq + 'static>(
+//     props: &MessageProviderProps,
+// ) -> Html {
+//     let msg = use_reducer(|| T::default());
+//     html! {
+//         <ContextProvider<UseReducerHandle<GenericReducible<T>>> context={msg}>
+//             {props.children.clone()}
+//         </ContextProvider<UseReducerHandle<GenericReducible<T>>>>
+//     }
+// }

@@ -1,13 +1,16 @@
 use crate::{
     providers::seconds_provider::MessageSecondsStateContext,
-    states::{seconds::SecondsStateAction, timer::TimerStateAction},
+    states::{
+        generic_reducible::GenericReducible, seconds::SecondsStateAction, timer::TimerStateAction,
+    },
 };
 use gloo_timers::callback::Interval;
 use yew::prelude::*;
 
 #[function_component]
 pub fn Clock() -> Html {
-    let timer_state_handle = use_context::<MessageTimerStateContext>().unwrap();
+    let timer_state_handle =
+        use_context::<UseReducerHandle<GenericReducible<TimerStateAction>>>().unwrap();
 
     let seconds_state_handle = use_context::<MessageSecondsStateContext>().unwrap();
 

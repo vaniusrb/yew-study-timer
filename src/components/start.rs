@@ -3,7 +3,9 @@ use yew::prelude::*;
 
 #[function_component]
 pub fn Start() -> Html {
-    let timer_state_handle = use_context::<GenericReducible<TimerStateAction>>().unwrap();
+    let timer_state_handle =
+        use_context::<UseReducerHandle<GenericReducible<TimerStateAction>>>().unwrap();
+
     let onclick = { Callback::from(move |_| timer_state_handle.dispatch(TimerStateAction::Start)) };
     html! {
         <div>

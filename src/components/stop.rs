@@ -1,9 +1,11 @@
-use crate::{providers::state_provider::MessageTimerStateContext, states::timer::TimerStateAction};
+use crate::states::{generic_reducible::GenericReducible, timer::TimerStateAction};
 use yew::prelude::*;
 
 #[function_component]
 pub fn Stop() -> Html {
-    let timer_state_handle = use_context::<MessageTimerStateContext>().unwrap();
+    let timer_state_handle =
+        use_context::<UseReducerHandle<GenericReducible<TimerStateAction>>>().unwrap();
+
     let onclick = { Callback::from(move |_| timer_state_handle.dispatch(TimerStateAction::Stop)) };
     html! {
         <div>
