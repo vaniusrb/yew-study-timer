@@ -8,17 +8,25 @@ use yew::prelude::*;
 #[function_component]
 pub fn Timer() -> Html {
     html! {
-        <MessageGenericProvider<TimerStateAction>>
-        <MessageReducibleProvider<SecondsState>>
-        <div class="box" style="width: 500px;">
-            <div class="columns is-vcentered">
-                <div class="column"><Clock/ ></div>
-                <div class="column"><Start/ ></div>
-                <div class="column"><Stop/ ></div>
-                <div class="column"><Reset/ ></div>
+        <div>
+            <MessageGenericProvider<TimerStateAction>>
+            <MessageReducibleProvider<SecondsState>>
+            <section class="container">
+            <div class="box">
+            <div class="features">
+            <div class="container">
+                <div class="columns is-centered is-vcentered">
+                    <Clock/ >
+                    <Start/ >
+                    <Stop/ >
+                    <Reset/ >
+                </div>
             </div>
+            </div>
+            </div>
+            </section>
+            </MessageReducibleProvider<SecondsState>>
+            </MessageGenericProvider<TimerStateAction>>
         </div>
-        </MessageReducibleProvider<SecondsState>>
-        </MessageGenericProvider<TimerStateAction>>
     }
 }

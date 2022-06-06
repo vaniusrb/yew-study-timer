@@ -45,9 +45,9 @@ pub fn Clock() -> Html {
         );
     }
     html! {
-        <div>
+        <div class ="column has-text-centered" style="width: 100px;">
             <span>{*seconds_state_handle}</span>
             <span>{" secs"}</span>
-    </div>
+        </div>
     }
 }

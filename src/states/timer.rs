@@ -15,6 +15,6 @@ impl Display for TimerStateAction {
 
 impl Default for TimerStateAction {
     fn default() -> Self {
-        TimerStateAction::Stop
+        Self::Stop
     }
 }

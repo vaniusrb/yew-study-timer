@@ -8,7 +8,7 @@ pub fn Reset() -> Html {
     let onclick =
         { Callback::from(move |_| seconds_state_handle.dispatch(SecondsStateAction::Reset)) };
     html! {
-        <div>
+        <div class="column has-text-centered">
             <button class="button is-danger" {onclick}>
                 <span class="icon-text">
                     <span class="icon">

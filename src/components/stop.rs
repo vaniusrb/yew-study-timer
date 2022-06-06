@@ -8,7 +8,7 @@ pub fn Stop() -> Html {
 
     let onclick = { Callback::from(move |_| timer_state_handle.dispatch(TimerStateAction::Stop)) };
     html! {
-        <div>
+        <div class="column has-text-centered">
             <button class="button is-warning" {onclick}>
                 <span class="icon-text">
                     <span class="icon">

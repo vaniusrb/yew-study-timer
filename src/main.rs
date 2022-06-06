@@ -8,7 +8,23 @@ use yew::prelude::*;
 #[function_component]
 pub fn App() -> Html {
     html! {
-        <Timer />
+        <div>
+            <section class="hero is-primary">
+                <div class="hero-body">
+                    <p class="title">{"Timer"}</p>
+                    <p class="subtitle">{"Seconds counter"}</p>
+                </div>
+            </section>
+            <br/>
+            <div class="columns is-mobile">
+                <div class="column is-half is-offset-one-quarter"><Timer /></div>
+            </div>
+            <footer class="footer">
+                <div class="content has-text-right">
+                    <p><strong>{"Yew Timer"}</strong> {" powered by Rust"}</p>
+                </div>
+            </footer>
+        </div>
     }
 }
 
