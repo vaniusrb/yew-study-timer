@@ -1,5 +1,5 @@
 use crate::{
-    providers::msg_ctx::MessageTimerStateContext,
+    providers::generic_provider::GenericReducible,
     states::{
         seconds::{SecondsState, SecondsStateAction},
         timer::TimerStateAction,
@@ -10,18 +10,20 @@ use yew::prelude::*;
 
 #[function_component]
 pub fn Clock() -> Html {
-    let msg_ctx = use_context::<MessageTimerStateContext>().unwrap();
+    let timer_state_handle =
+        use_context::<UseReducerHandle<GenericReducible<TimerStateAction>>>().unwrap();
 
-    let seconds_state_handle = use_reducer(SecondsState::default);
+    let seconds_state_handle = use_context::<UseReducerHandle<SecondsState>>().unwrap();
+
     let interval_handle = use_mut_ref(|| Option::<Interval>::None);
 
     {
         let seconds_state_handle = seconds_state_handle.clone();
-        let msg_ctx_dep = msg_ctx.clone();
+        let timer_state_handle_dep = timer_state_handle.clone();
         use_effect_with_deps(
             move |_| {
                 let mut interval_opt = interval_handle.borrow_mut();
-                match msg_ctx_dep.inner {
+                match timer_state_handle_dep.inner {
                     TimerStateAction::Stop => {
                         if let Some(interval) = (*interval_opt).take() {
                             interval.cancel();
@@ -39,12 +41,13 @@ pub fn Clock() -> Html {
                 };
                 || ()
             },
-            msg_ctx, // Only create the interval once per your component existence
+            timer_state_handle,
         );
     }
-
-    html! {<h1>{*seconds_state_handle}{" seconds"}</h1>}
-    // html! {
-    //     { "00:00" }
-    // }
+    html! {
+        <div>
+            <span>{*seconds_state_handle}</span>
+            <span>{" secs"}</span>
+    </div>
+    }
 }

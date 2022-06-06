@@ -1,10 +1,5 @@
 use core::fmt;
-use std::{
-    fmt::{Display, Formatter},
-    rc::Rc,
-};
-
-use yew::prelude::*;
+use std::fmt::{Display, Formatter};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum TimerStateAction {
@@ -12,37 +7,14 @@ pub enum TimerStateAction {
     Start,
 }
 
-#[derive(Debug, Clone, PartialEq)]
-pub struct TimerState {
-    state: TimerStateAction,
-}
-
-impl Default for TimerState {
-    fn default() -> Self {
-        Self {
-            state: TimerStateAction::Stop,
-        }
-    }
-}
-
-impl TimerState {
-    pub fn new() -> Self {
-        Self::default()
-    }
-}
-
-impl Display for TimerState {
+impl Display for TimerStateAction {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        write!(f, "{:?}", self.state)
+        write!(f, "{:?}", self)
     }
 }
 
-impl Reducible for TimerState {
-    /// Reducer Action Type
-    type Action = TimerStateAction;
-
-    /// Reducer Function
-    fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
-        TimerState { state: action }.into()
+impl Default for TimerStateAction {
+    fn default() -> Self {
+        TimerStateAction::Stop
     }
 }

@@ -1,21 +1,21 @@
-use crate::{msg_ctx::MessageContext, states::timer::TimerStateAction};
+use crate::states::seconds::{SecondsState, SecondsStateAction};
 use yew::prelude::*;
 
 #[function_component]
-pub fn Stop() -> Html {
-    let msg_ctx = use_context::<MessageContext>().unwrap();
+pub fn Reset() -> Html {
+    let seconds_state_handle = use_context::<UseReducerHandle<SecondsState>>().unwrap();
 
-    let onclick = {
-        // let msg_ctx = msg_ctx;
-        Callback::from(move |_| msg_ctx.dispatch(TimerStateAction::Stop))
-    };
-
-    // let message = msg_ctx.inner.to_owned();
-
+    let onclick =
+        { Callback::from(move |_| seconds_state_handle.dispatch(SecondsStateAction::Reset)) };
     html! {
         <div>
-            <button {onclick}>
-                {"<"}
+            <button class="button is-danger" {onclick}>
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="material-icons">{"settings_backup_restore"}</i>
+                    </span>
+                    <span>{ "Reset" }</span>
+                </span>
             </button>
         </div>
     }

@@ -3,12 +3,24 @@ use std::{
     fmt::{Display, Formatter},
     rc::Rc,
 };
-
 use yew::prelude::*;
 
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum SecondsStateAction {
     Increment,
     Reset,
+}
+
+impl Default for SecondsStateAction {
+    fn default() -> Self {
+        Self::Reset
+    }
+}
+
+impl Display for SecondsStateAction {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq)]
@@ -23,10 +35,8 @@ impl Display for SecondsState {
 }
 
 impl Reducible for SecondsState {
-    /// Reducer Action Type
     type Action = SecondsStateAction;
 
-    /// Reducer Function
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         match action {
             SecondsStateAction::Increment => Self {

@@ -1,18 +1,24 @@
 use crate::{
-    components::{clock::Clock, start::Start, stop::Stop},
-    providers::msg_ctx::MessageTimerStateProvider,
+    components::{clock::Clock, reset::Reset, start::Start, stop::Stop},
+    providers::generic_provider::{MessageGenericProvider, MessageReducibleProvider},
+    states::{seconds::SecondsState, timer::TimerStateAction},
 };
 use yew::prelude::*;
 
 #[function_component]
 pub fn Timer() -> Html {
     html! {
-        <MessageTimerStateProvider>
-        <div>
-            <Clock/ >
-            <Start/ >
-            <Stop/ >
+        <MessageGenericProvider<TimerStateAction>>
+        <MessageReducibleProvider<SecondsState>>
+        <div class="box" style="width: 500px;">
+            <div class="columns is-vcentered">
+                <div class="column"><Clock/ ></div>
+                <div class="column"><Start/ ></div>
+                <div class="column"><Stop/ ></div>
+                <div class="column"><Reset/ ></div>
+            </div>
         </div>
-        </MessageTimerStateProvider>
+        </MessageReducibleProvider<SecondsState>>
+        </MessageGenericProvider<TimerStateAction>>
     }
 }
