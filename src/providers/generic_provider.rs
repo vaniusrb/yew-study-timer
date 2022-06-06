@@ -1,4 +1,3 @@
-use crate::providers::util::MessageProviderProps;
 use core::fmt;
 use std::{
     fmt::{Display, Formatter},
@@ -41,7 +40,11 @@ impl<T: Default + Clone + Display + PartialEq + 'static> Display for GenericRedu
     }
 }
 
-// TODO: generalize
+#[derive(Properties, Debug, PartialEq)]
+pub struct MessageProviderProps {
+    #[prop_or_default]
+    pub children: Children,
+}
 
 #[function_component]
 pub fn MessageGenericProvider<T: Default + Clone + Display + PartialEq + 'static>(
@@ -55,14 +58,14 @@ pub fn MessageGenericProvider<T: Default + Clone + Display + PartialEq + 'static
     }
 }
 
-// #[function_component]
-// pub fn MessageTraitProvider<T: Reducible + Default + Clone + Display + PartialEq + 'static>(
-//     props: &MessageProviderProps,
-// ) -> Html {
-//     let msg = use_reducer(|| T::default());
-//     html! {
-//         <ContextProvider<UseReducerHandle<GenericReducible<T>>> context={msg}>
-//             {props.children.clone()}
-//         </ContextProvider<UseReducerHandle<GenericReducible<T>>>>
-//     }
-// }
+#[function_component]
+pub fn MessageReducibleProvider<T: Reducible + Default + Clone + Display + PartialEq + 'static>(
+    props: &MessageProviderProps,
+) -> Html {
+    let msg = use_reducer(|| T::default());
+    html! {
+        <ContextProvider<UseReducerHandle<T>> context={msg}>
+            {props.children.clone()}
+        </ContextProvider<UseReducerHandle<T>>>
+    }
+}

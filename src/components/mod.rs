@@ -1,6 +1,5 @@
-
 pub mod clock;
-pub mod timer;
+pub mod reset;
 pub mod start;
 pub mod stop;
-pub mod reset;
+pub mod timer;

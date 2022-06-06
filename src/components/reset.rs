@@ -1,13 +1,12 @@
-use crate::{
-    providers::seconds_provider::MessageSecondsStateContext, states::seconds::SecondsStateAction,
-};
+use crate::states::seconds::{SecondsState, SecondsStateAction};
 use yew::prelude::*;
 
 #[function_component]
 pub fn Reset() -> Html {
-    let msg_ctx = use_context::<MessageSecondsStateContext>().unwrap();
+    let seconds_state_handle = use_context::<UseReducerHandle<SecondsState>>().unwrap();
 
-    let onclick = { Callback::from(move |_| msg_ctx.dispatch(SecondsStateAction::Reset)) };
+    let onclick =
+        { Callback::from(move |_| seconds_state_handle.dispatch(SecondsStateAction::Reset)) };
     html! {
         <div>
             <button class="button is-danger" {onclick}>

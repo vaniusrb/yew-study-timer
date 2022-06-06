@@ -1,7 +1,8 @@
 use crate::{
-    providers::seconds_provider::MessageSecondsStateContext,
+    providers::generic_provider::GenericReducible,
     states::{
-        generic_reducible::GenericReducible, seconds::SecondsStateAction, timer::TimerStateAction,
+        seconds::{SecondsState, SecondsStateAction},
+        timer::TimerStateAction,
     },
 };
 use gloo_timers::callback::Interval;
@@ -12,17 +13,17 @@ pub fn Clock() -> Html {
     let timer_state_handle =
         use_context::<UseReducerHandle<GenericReducible<TimerStateAction>>>().unwrap();
 
-    let seconds_state_handle = use_context::<MessageSecondsStateContext>().unwrap();
+    let seconds_state_handle = use_context::<UseReducerHandle<SecondsState>>().unwrap();
 
     let interval_handle = use_mut_ref(|| Option::<Interval>::None);
 
     {
         let seconds_state_handle = seconds_state_handle.clone();
-        let msg_ctx_dep = timer_state_handle.clone();
+        let timer_state_handle_dep = timer_state_handle.clone();
         use_effect_with_deps(
             move |_| {
                 let mut interval_opt = interval_handle.borrow_mut();
-                match msg_ctx_dep.inner {
+                match timer_state_handle_dep.inner {
                     TimerStateAction::Stop => {
                         if let Some(interval) = (*interval_opt).take() {
                             interval.cancel();

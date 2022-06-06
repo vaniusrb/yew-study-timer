@@ -23,9 +23,6 @@ impl Display for SecondsStateAction {
     }
 }
 
-// TODO: generalize this with factory
-// create_reducible<T>( |action| -> Self )
-
 #[derive(Default, Debug, Clone, Copy, PartialEq)]
 pub struct SecondsState {
     seconds: usize,
@@ -38,10 +35,8 @@ impl Display for SecondsState {
 }
 
 impl Reducible for SecondsState {
-    /// Reducer Action Type
     type Action = SecondsStateAction;
 
-    /// Reducer Function
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         match action {
             SecondsStateAction::Increment => Self {
