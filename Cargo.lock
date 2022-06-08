@@ -267,6 +267,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "instant"
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
+dependencies = [
+ "cfg-if",
+ "js-sys",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -588,7 +600,7 @@ dependencies = [
 [[package]]
 name = "yew"
 version = "0.19.3"
-source = "git+https://github.com/yewstack/yew/#e19615693e45b979049d1eeafff1cc842f2e6417"
+source = "git+https://github.com/yewstack/yew/#72726573323447382d051ebc52a9358d474f8826"
 dependencies = [
  "console_error_panic_hook",
  "gloo",
@@ -607,7 +619,7 @@ dependencies = [
 [[package]]
 name = "yew-agent"
 version = "0.1.0"
-source = "git+https://github.com/yewstack/yew/#e19615693e45b979049d1eeafff1cc842f2e6417"
+source = "git+https://github.com/yewstack/yew/#72726573323447382d051ebc52a9358d474f8826"
 dependencies = [
  "gloo-worker",
  "yew",
@@ -616,7 +628,7 @@ dependencies = [
 [[package]]
 name = "yew-macro"
 version = "0.19.3"
-source = "git+https://github.com/yewstack/yew/#e19615693e45b979049d1eeafff1cc842f2e6417"
+source = "git+https://github.com/yewstack/yew/#72726573323447382d051ebc52a9358d474f8826"
 dependencies = [
  "boolinator",
  "lazy_static",
@@ -633,8 +645,10 @@ name = "yew-study-timer"
 version = "0.1.0"
 dependencies = [
  "gloo-timers",
+ "instant",
  "log",
  "serde",
+ "wasm-bindgen",
  "wasm-bindgen-futures",
  "wasm-logger",
  "yew",
