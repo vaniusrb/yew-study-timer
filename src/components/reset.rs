@@ -1,12 +1,12 @@
-use crate::states::seconds::{SecondsState, SecondsStateAction};
+use crate::states::ticker::{TickerState, TickerStateAction};
 use yew::prelude::*;
 
 #[function_component]
 pub fn Reset() -> Html {
-    let seconds_state_handle = use_context::<UseReducerHandle<SecondsState>>().unwrap();
+    let seconds_state_handle = use_context::<UseReducerHandle<TickerState>>().unwrap();
 
     let onclick =
-        { Callback::from(move |_| seconds_state_handle.dispatch(SecondsStateAction::Reset)) };
+        { Callback::from(move |_| seconds_state_handle.dispatch(TickerStateAction::Reset)) };
     html! {
         <div class="column has-text-centered">
             <button class="button is-danger" {onclick}>

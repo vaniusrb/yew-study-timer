@@ -1,7 +1,7 @@
 use crate::{
     components::{clock::Clock, reset::Reset, start::Start, stop::Stop},
     providers::generic_provider::{MessageGenericProvider, MessageReducibleProvider},
-    states::{seconds::SecondsState, timer::TimerStateAction},
+    states::{start_stop::TimerStateAction, ticker::TickerState},
 };
 use yew::prelude::*;
 
@@ -10,9 +10,9 @@ pub fn Timer() -> Html {
     html! {
         <div>
             <MessageGenericProvider<TimerStateAction>>
-            <MessageReducibleProvider<SecondsState>>
+            <MessageReducibleProvider<TickerState>>
             <section class="container">
-            <div class="box">
+            <div class="box" style="width: 600px;">
             <div class="features">
             <div class="container">
                 <div class="columns is-centered is-vcentered">
@@ -25,7 +25,7 @@ pub fn Timer() -> Html {
             </div>
             </div>
             </section>
-            </MessageReducibleProvider<SecondsState>>
+            </MessageReducibleProvider<TickerState>>
             </MessageGenericProvider<TimerStateAction>>
         </div>
     }

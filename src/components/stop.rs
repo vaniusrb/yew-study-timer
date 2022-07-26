@@ -1,4 +1,4 @@
-use crate::{providers::generic_provider::GenericReducible, states::timer::TimerStateAction};
+use crate::{providers::generic_provider::GenericReducible, states::start_stop::TimerStateAction};
 use yew::prelude::*;
 
 #[function_component]

@@ -1,2 +1,2 @@
-pub mod seconds;
-pub mod timer;
+pub mod ticker;
+pub mod start_stop;
